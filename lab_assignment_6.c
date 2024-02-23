@@ -1,8 +1,25 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 int search(int numbers[], int low, int high, int value) 
 {
-	return -1;
+	//base case: returns -1 if the value isn't found within given range
+	if(low == high)
+		return -1;
+
+	int mid = (low + high)/2;
+	//return the index that the given value is found in within given range
+	if(numbers[mid] == value)
+		return mid;
+	//recursive case: search between the given range
+	else if(numbers[mid] < value)
+	//checks the left half of the array
+		return search(numbers, low, mid, value);
+
+	//checks the right half of the array
+	return search(numbers, mid + 1, high, value);
+	
+	
 }
 
 void printArray(int numbers[], int sz)
